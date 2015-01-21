@@ -1,0 +1,1 @@
+This project aims to build a canvas editor with the paper js library. More elaborate documentation to follow.
