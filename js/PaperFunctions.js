@@ -39,6 +39,8 @@ var paperFunctions = {
 		var path;
 
 		tool.onMouseDown = function(event) {
+            //Don't draw while zooming
+            if (hammer.pinch) return;
             fingerDown = true;
 			path = new Path();
 			path.strokeColor = 'blue';
@@ -47,6 +49,7 @@ var paperFunctions = {
 		}
 
 		tool.onMouseDrag = function(event) {
+            if (hammer.pinch) return;
 			console.log("MouseDrag coords: " + event.point);
 			path.add(event.point);
 		}
@@ -54,6 +57,9 @@ var paperFunctions = {
 		tool.onMouseUp = function(event) {
 			console.log("MouseUp coords: " + event.point);
 			path.simplify(5);
+            //Assist with scaling from hammer
+            hammer.pinch = false;
+            hammer.prevScale = hammer.curScale;
 		}
 
 		paper.view.draw();

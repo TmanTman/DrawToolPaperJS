@@ -12,4 +12,6 @@ $(document).ready(function() {
     
     paperFunctions.setupCanvasWithPaper(canvas);
     
+    hammer.setupCanvasWithHammer(canvas);
+    
 });
