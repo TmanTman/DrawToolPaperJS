@@ -14,4 +14,6 @@ $(document).ready(function() {
     
     hammer.setupCanvasWithHammer(canvas);
     
+    fileLoad.setupFileLoad();
+    
 });

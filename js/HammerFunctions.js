@@ -7,11 +7,18 @@ var hammer = {
     curScale: 1,
     prevScale: 1,
     
+    //Panning mechanism
+    prevCenterPoint : 1,
+    curCenterPoint : 1,
+    
     setupCanvasWithHammer : function (canvas) {
         console.log("HammerGesture started");
 
         //Create canvas and set attributes
         var scaleTol = 0.05;
+        
+        //Initialize values now that paper has been installed
+        prevCenterPoint = paper.view.center;
 
         var hammertime = new Hammer(canvas);
         hammertime.get('pinch').set({enable: true});
@@ -19,7 +26,6 @@ var hammer = {
             hammer.pinch = true;
 
             //Ensure scaling value is larger than tolerance
-            console.log("Scale factor: " + ev.scale);
             if (Math.abs(1-ev.scale) > scaleTol){ 
                 hammer.curScale = hammer.prevScale * ev.scale;
                 //Won't allow zoomout of more that 0.8
@@ -28,7 +34,14 @@ var hammer = {
                 }
                 paper.view.zoom = hammer.curScale;
             }
+        
+            //Panning mechanism
+            curCenterPoint = prevCenterPoint.add(-1 * ev.deltaX, -1 * ev.deltaY);
+            paper.view.center = curCenterPoint;
+            
         });
+        
+        
     }
 }
                   
