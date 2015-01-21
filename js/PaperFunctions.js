@@ -44,18 +44,16 @@ var paperFunctions = {
             fingerDown = true;
 			path = new Path();
 			path.strokeColor = 'blue';
-			console.log("MouseDown coords: " + event.point);
+            path.strokeWidth = 3;
 			path.add(event.point);
 		}
 
 		tool.onMouseDrag = function(event) {
             if (hammer.pinch) return;
-			console.log("MouseDrag coords: " + event.point);
 			path.add(event.point);
 		}
 
 		tool.onMouseUp = function(event) {
-			console.log("MouseUp coords: " + event.point);
 			path.simplify(5);
             //Assist with scaling from hammer
             hammer.pinch = false;
