@@ -1,4 +1,6 @@
-This project aims to build a canvas editor with the paper js library.
+This project aims to build a canvas editor with the paper js library. Live demo here: http://tmantechblog.com/testpaperjs/
+
+The structure of the program:
 
 index.html provides the bare bones necessary HTML elements
 
